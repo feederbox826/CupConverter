@@ -79,7 +79,7 @@ test("minimized version should return same result", () => {
 })
 
 // https://erodougazo.com/actress/av/%E6%A1%9C%E3%82%8A%E3%82%87%E3%81%86%E3%81%8B/
-test("Test against 桜りょうか/", () => {
+test("Test against 桜りょうか", () => {
     expect(cupConverter.JPtoUS('L', 108, 60, 90)).toBe('43E-24-35');
     expect(cupConverterMin.JPtoUS('L', 108, 60, 90)).toBe('43E-24-35');
 })
@@ -94,4 +94,28 @@ test("Test against 塔乃花鈴", () => {
 test("Test against 椿りか", () => {
     expect(cupConverter.JPtoUS('G', 88, 55, 84)).toBe('35C-22-33');
     expect(cupConverterMin.JPtoUS('G', 88, 55, 84)).toBe('35C-22-33');
+})
+
+// https://erodougazo.com/actress/av/%E7%99%BD%E6%A3%AE%E3%81%8F%E3%82%8B%E3%81%BF/
+test("Test against 白森くるみ", () => {
+    expect(cupConverter.JPtoUS('C', 82, 55, 82)).toBe('32A-22-32');
+    expect(cupConverterMin.JPtoUS('C', 82, 55, 82)).toBe('32A-22-32');
+})
+
+// https://erodougazo.com/actress/av/%E6%9C%A8%E6%9D%91%E6%84%9B%E5%BF%83/
+test("Test against 木村愛心", () => {
+    expect(cupConverter.JPtoUS('L', 108, 60, 90)).toBe('43E-24-35');
+    expect(cupConverterMin.JPtoUS('L', 108, 60, 90)).toBe('43E-24-35');
+})
+
+// https://erodougazo.com/actress/av/%E7%9A%86%E6%9C%88%E3%81%B2%E3%81%8B%E3%82%8B/
+test("Test against 皆月ひかる (A)", () => {
+    expect(cupConverter.JPtoUS('A', 83, 55, 85)).toBe('33AA-22-33');
+    expect(cupConverterMin.JPtoUS('A', 83, 55, 85)).toBe('33AA-22-33');
+})
+
+// https://erodougazo.com/actress/av/Himari/
+test("Test against Himari (Q)", () => {
+    expect(cupConverter.JPtoUS('Q', 118, 65, 98)).toBe('46G-26-39');
+    expect(cupConverterMin.JPtoUS('Q', 118, 65, 98)).toBe('46G-26-39');
 })
