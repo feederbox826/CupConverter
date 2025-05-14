@@ -1,4 +1,5 @@
-const cupConverter = require('./cupConverter');
+const cupConverter = require('./cupConverter.js');
+const cupConverterMin = require('./cupConverter.min.js');
 
 // Metric to Imperial
 test("should convert 1cm successfully", () => {
@@ -64,4 +65,15 @@ test("Should convert JP L to US E (metric conversion)", () => {
 
 test("Should convert JP Q to US G (metric conversion)", () => {
     expect(cupConverter.jpToUS('Q', 150, 150, 150)).toBe('59G-59-59');
+})
+
+test("minimized version should return same result", () => {
+    expect(cupConverterMin.jpToUS('A', 1, 1, 1)).toBe(cupConverter.jpToUS('A', 1, 1, 1));
+    expect(cupConverterMin.jpToUS('B', 30, 30, 30)).toBe(cupConverter.jpToUS('B', 30, 30, 30));
+    expect(cupConverterMin.jpToUS('D', 50, 50, 50)).toBe(cupConverter.jpToUS('D', 50, 50, 50));
+    expect(cupConverterMin.jpToUS('L', 100, 100, 100)).toBe(cupConverter.jpToUS('L', 100, 100, 100));
+    expect(cupConverterMin.jpToUS('Q', 150, 150, 150)).toBe(cupConverter.jpToUS('Q', 150, 150, 150));
+    expect(cupConverterMin.jpToUS('A', 1, 1, 1)).toBe(cupConverterMin.jpToUS('A', 1, 1, 1));
+    expect(cupConverterMin.jpToUS('B', 30, 30, 30)).toBe(cupConverterMin.jpToUS('B', 30, 30, 30));
+    expect(cupConverterMin.jpToUS('D', 50, 50, 50)).toBe(cupConverterMin.jpToUS('D', 50, 50, 50));
 })
