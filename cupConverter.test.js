@@ -3,77 +3,95 @@ const cupConverterMin = require('./cupConverter.min.js');
 
 // Metric to Imperial
 test("should convert 1cm successfully", () => {
-    expect(cupConverter.metricToImp(1)).toBe(0);
+    expect(cupConverter.cmToIn(1)).toBe(0);
 })
 
 test("should convert larger metric values successfully", () => {
-    expect(cupConverter.metricToImp(30)).toBe(12);
+    expect(cupConverter.cmToIn(30)).toBe(12);
 })
 
 // Lookup cup sizes
 test("Should return AA for bustDiffIn < 1", () => {
-    expect(cupConverter.lookupUSCup(0)).toBe('AA');
-    expect(cupConverter.lookupUSCup(-1)).toBe('AA');
-    expect(cupConverter.lookupUSCup(0.9)).toBe('AA');
+    expect(cupConverter.USCup(0)).toBe('AA');
+    expect(cupConverter.USCup(-1)).toBe('AA');
+    expect(cupConverter.USCup(0.9)).toBe('AA');
 })
 
 test("Should return correct letter for bustDiffIn >= 1", () => {
-    expect(cupConverter.lookupUSCup(1)).toBe('A');
-    expect(cupConverter.lookupUSCup(2)).toBe('B');
-    expect(cupConverter.lookupUSCup(3)).toBe('C');
-    expect(cupConverter.lookupUSCup(4)).toBe('D');
-    expect(cupConverter.lookupUSCup(5)).toBe('E');
-    expect(cupConverter.lookupUSCup(6)).toBe('F');
-    expect(cupConverter.lookupUSCup(7)).toBe('G');
-    expect(cupConverter.lookupUSCup(8)).toBe('H');
-    expect(cupConverter.lookupUSCup(9)).toBe('I');
-    expect(cupConverter.lookupUSCup(10)).toBe('J');
-    expect(cupConverter.lookupUSCup(11)).toBe('K');
-    expect(cupConverter.lookupUSCup(12)).toBe('L');
-    expect(cupConverter.lookupUSCup(13)).toBe('M');
-    expect(cupConverter.lookupUSCup(14)).toBe('N');
-    expect(cupConverter.lookupUSCup(15)).toBe('O');
-    expect(cupConverter.lookupUSCup(16)).toBe('P');
-    expect(cupConverter.lookupUSCup(17)).toBe('Q');
-    expect(cupConverter.lookupUSCup(18)).toBe('R');
-    expect(cupConverter.lookupUSCup(19)).toBe('S');
-    expect(cupConverter.lookupUSCup(20)).toBe('T');
-    expect(cupConverter.lookupUSCup(21)).toBe('U');
-    expect(cupConverter.lookupUSCup(22)).toBe('V');
-    expect(cupConverter.lookupUSCup(23)).toBe('W');
-    expect(cupConverter.lookupUSCup(24)).toBe('X');
-    expect(cupConverter.lookupUSCup(25)).toBe('Y');
-    expect(cupConverter.lookupUSCup(26)).toBe('Z');
+    expect(cupConverter.USCup(1)).toBe('A');
+    expect(cupConverter.USCup(2)).toBe('B');
+    expect(cupConverter.USCup(3)).toBe('C');
+    expect(cupConverter.USCup(4)).toBe('D');
+    expect(cupConverter.USCup(5)).toBe('E');
+    expect(cupConverter.USCup(6)).toBe('F');
+    expect(cupConverter.USCup(7)).toBe('G');
+    expect(cupConverter.USCup(8)).toBe('H');
+    expect(cupConverter.USCup(9)).toBe('I');
+    expect(cupConverter.USCup(10)).toBe('J');
+    expect(cupConverter.USCup(11)).toBe('K');
+    expect(cupConverter.USCup(12)).toBe('L');
+    expect(cupConverter.USCup(13)).toBe('M');
+    expect(cupConverter.USCup(14)).toBe('N');
+    expect(cupConverter.USCup(15)).toBe('O');
+    expect(cupConverter.USCup(16)).toBe('P');
+    expect(cupConverter.USCup(17)).toBe('Q');
+    expect(cupConverter.USCup(18)).toBe('R');
+    expect(cupConverter.USCup(19)).toBe('S');
+    expect(cupConverter.USCup(20)).toBe('T');
+    expect(cupConverter.USCup(21)).toBe('U');
+    expect(cupConverter.USCup(22)).toBe('V');
+    expect(cupConverter.USCup(23)).toBe('W');
+    expect(cupConverter.USCup(24)).toBe('X');
+    expect(cupConverter.USCup(25)).toBe('Y');
+    expect(cupConverter.USCup(26)).toBe('Z');
 })
 
 // JP to US conversion
 test("Should convert JP A to US AA", () => {
-    expect(cupConverter.jpToUS('A', 1, 1, 1)).toBe('0AA-0-0');
+    expect(cupConverter.JPtoUS('A', 1, 1, 1)).toBe('0AA-0-0');
 })
 
 test("Should convert JP B to US A", () => {
-    expect(cupConverter.jpToUS('B', 30, 30, 30)).toBe('12A-12-12');
+    expect(cupConverter.JPtoUS('B', 30, 30, 30)).toBe('12A-12-12');
 })
 
 test("Should convert JP D to US B (metric conversion)", () => {
-    expect(cupConverter.jpToUS('D', 50, 50, 50)).toBe('20B-20-20');
+    expect(cupConverter.JPtoUS('D', 50, 50, 50)).toBe('20B-20-20');
 })
 
 test("Should convert JP L to US E (metric conversion)", () => {
-    expect(cupConverter.jpToUS('L', 100, 100, 100)).toBe('39E-39-39');
+    expect(cupConverter.JPtoUS('L', 100, 100, 100)).toBe('39E-39-39');
 })
 
 test("Should convert JP Q to US G (metric conversion)", () => {
-    expect(cupConverter.jpToUS('Q', 150, 150, 150)).toBe('59G-59-59');
+    expect(cupConverter.JPtoUS('Q', 150, 150, 150)).toBe('59G-59-59');
 })
 
 test("minimized version should return same result", () => {
-    expect(cupConverterMin.jpToUS('A', 1, 1, 1)).toBe(cupConverter.jpToUS('A', 1, 1, 1));
-    expect(cupConverterMin.jpToUS('B', 30, 30, 30)).toBe(cupConverter.jpToUS('B', 30, 30, 30));
-    expect(cupConverterMin.jpToUS('D', 50, 50, 50)).toBe(cupConverter.jpToUS('D', 50, 50, 50));
-    expect(cupConverterMin.jpToUS('L', 100, 100, 100)).toBe(cupConverter.jpToUS('L', 100, 100, 100));
-    expect(cupConverterMin.jpToUS('Q', 150, 150, 150)).toBe(cupConverter.jpToUS('Q', 150, 150, 150));
-    expect(cupConverterMin.jpToUS('A', 1, 1, 1)).toBe(cupConverterMin.jpToUS('A', 1, 1, 1));
-    expect(cupConverterMin.jpToUS('B', 30, 30, 30)).toBe(cupConverterMin.jpToUS('B', 30, 30, 30));
-    expect(cupConverterMin.jpToUS('D', 50, 50, 50)).toBe(cupConverterMin.jpToUS('D', 50, 50, 50));
+    expect(cupConverterMin.JPtoUS('A', 1, 1, 1)).toBe(cupConverter.JPtoUS('A', 1, 1, 1));
+    expect(cupConverterMin.JPtoUS('B', 30, 30, 30)).toBe(cupConverter.JPtoUS('B', 30, 30, 30));
+    expect(cupConverterMin.JPtoUS('D', 50, 50, 50)).toBe(cupConverter.JPtoUS('D', 50, 50, 50));
+    expect(cupConverterMin.JPtoUS('L', 100, 100, 100)).toBe(cupConverter.JPtoUS('L', 100, 100, 100));
+    expect(cupConverterMin.JPtoUS('Q', 150, 150, 150)).toBe(cupConverter.JPtoUS('Q', 150, 150, 150));
+    expect(cupConverterMin.JPtoUS('A', 1, 1, 1)).toBe(cupConverterMin.JPtoUS('A', 1, 1, 1));
+    expect(cupConverterMin.JPtoUS('B', 30, 30, 30)).toBe(cupConverterMin.JPtoUS('B', 30, 30, 30));
+    expect(cupConverterMin.JPtoUS('D', 50, 50, 50)).toBe(cupConverterMin.JPtoUS('D', 50, 50, 50));
+})
+
+// https://erodougazo.com/actress/av/%E6%A1%9C%E3%82%8A%E3%82%87%E3%81%86%E3%81%8B/
+test("Test against 桜りょうか/", () => {
+    expect(cupConverter.JPtoUS('L', 108, 60, 90)).toBe('43E-24-35');
+    expect(cupConverterMin.JPtoUS('L', 108, 60, 90)).toBe('43E-24-35');
+})
+
+// https://erodougazo.com/actress/av/%E5%A1%94%E4%B9%83%E8%8A%B1%E9%88%B4/
+test("Test against 塔乃花鈴", () => {
+    expect(cupConverter.JPtoUS('F', 87, 60, 89)).toBe('34B-24-35');
+    expect(cupConverterMin.JPtoUS('F', 87, 60, 89)).toBe('34B-24-35');
+})
+
+// https://erodougazo.com/actress/av/%E6%A4%BF%E3%82%8A%E3%81%8B/
+test("Test against 椿りか", () => {
+    expect(cupConverter.JPtoUS('G', 88, 55, 84)).toBe('35C-22-33');
+    expect(cupConverterMin.JPtoUS('G', 88, 55, 84)).toBe('35C-22-33');
 })
