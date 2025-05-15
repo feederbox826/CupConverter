@@ -46,25 +46,33 @@ test("Should return correct letter for bustDiffIn >= 1", () => {
     expect(cupConverter.USCup(26)).toBe('Z');
 })
 
+// band size conversion
+test("Should convert band size correctly", () => {
+    expect(cupConverter.bandSize(100, 4)).toBe(42);
+    expect(cupConverter.bandSize(100, 5)).toBe(42);
+    expect(cupConverter.bandSize(80, 4)).toBe(34);
+    expect(cupConverter.bandSize(108, 10)).toBe(44);
+})
+
 // JP to US conversion
 test("Should convert JP A to US AA", () => {
-    expect(cupConverter.JPtoUS('A', 1, 1, 1)).toBe('0AA-0-0');
+    expect(cupConverter.JPtoUS('A', 1, 1, 1)).toBe('4AA-0-0');
 })
 
 test("Should convert JP B to US A", () => {
-    expect(cupConverter.JPtoUS('B', 30, 30, 30)).toBe('12A-12-12');
+    expect(cupConverter.JPtoUS('B', 30, 30, 30)).toBe('16A-12-12');
 })
 
 test("Should convert JP D to US B (metric conversion)", () => {
-    expect(cupConverter.JPtoUS('D', 50, 50, 50)).toBe('20B-20-20');
+    expect(cupConverter.JPtoUS('D', 50, 50, 50)).toBe('22B-20-20');
 })
 
 test("Should convert JP L to US E (metric conversion)", () => {
-    expect(cupConverter.JPtoUS('L', 100, 100, 100)).toBe('39E-39-39');
+    expect(cupConverter.JPtoUS('L', 100, 100, 100)).toBe('40E-39-39');
 })
 
 test("Should convert JP Q to US G (metric conversion)", () => {
-    expect(cupConverter.JPtoUS('Q', 150, 150, 150)).toBe('59G-59-59');
+    expect(cupConverter.JPtoUS('Q', 150, 150, 150)).toBe('56G-59-59');
 })
 
 test("minimized version should return same result", () => {
@@ -80,42 +88,42 @@ test("minimized version should return same result", () => {
 
 // https://erodougazo.com/actress/av/%E6%A1%9C%E3%82%8A%E3%82%87%E3%81%86%E3%81%8B/
 test("Test against 桜りょうか", () => {
-    expect(cupConverter.JPtoUS('L', 108, 60, 90)).toBe('43E-24-35');
-    expect(cupConverterMin.JPtoUS('L', 108, 60, 90)).toBe('43E-24-35');
+    expect(cupConverter.JPtoUS('L', 108, 60, 90)).toBe('42E-24-35');
+    expect(cupConverterMin.JPtoUS('L', 108, 60, 90)).toBe('42E-24-35');
 })
 
 // https://erodougazo.com/actress/av/%E5%A1%94%E4%B9%83%E8%8A%B1%E9%88%B4/
 test("Test against 塔乃花鈴", () => {
-    expect(cupConverter.JPtoUS('F', 87, 60, 89)).toBe('34B-24-35');
-    expect(cupConverterMin.JPtoUS('F', 87, 60, 89)).toBe('34B-24-35');
+    expect(cupConverter.JPtoUS('F', 87, 60, 89)).toBe('36B-24-35');
+    expect(cupConverterMin.JPtoUS('F', 87, 60, 89)).toBe('36B-24-35');
 })
 
 // https://erodougazo.com/actress/av/%E6%A4%BF%E3%82%8A%E3%81%8B/
 test("Test against 椿りか", () => {
-    expect(cupConverter.JPtoUS('G', 88, 55, 84)).toBe('35C-22-33');
-    expect(cupConverterMin.JPtoUS('G', 88, 55, 84)).toBe('35C-22-33');
+    expect(cupConverter.JPtoUS('G', 88, 55, 84)).toBe('36C-22-33');
+    expect(cupConverterMin.JPtoUS('G', 88, 55, 84)).toBe('36C-22-33');
 })
 
 // https://erodougazo.com/actress/av/%E7%99%BD%E6%A3%AE%E3%81%8F%E3%82%8B%E3%81%BF/
 test("Test against 白森くるみ", () => {
-    expect(cupConverter.JPtoUS('C', 82, 55, 82)).toBe('32A-22-32');
-    expect(cupConverterMin.JPtoUS('C', 82, 55, 82)).toBe('32A-22-32');
+    expect(cupConverter.JPtoUS('C', 82, 55, 82)).toBe('36A-22-32');
+    expect(cupConverterMin.JPtoUS('C', 82, 55, 82)).toBe('36A-22-32');
 })
 
 // https://erodougazo.com/actress/av/%E6%9C%A8%E6%9D%91%E6%84%9B%E5%BF%83/
 test("Test against 木村愛心", () => {
-    expect(cupConverter.JPtoUS('L', 108, 60, 90)).toBe('43E-24-35');
-    expect(cupConverterMin.JPtoUS('L', 108, 60, 90)).toBe('43E-24-35');
+    expect(cupConverter.JPtoUS('L', 108, 60, 90)).toBe('42E-24-35');
+    expect(cupConverterMin.JPtoUS('L', 108, 60, 90)).toBe('42E-24-35');
 })
 
 // https://erodougazo.com/actress/av/%E7%9A%86%E6%9C%88%E3%81%B2%E3%81%8B%E3%82%8B/
 test("Test against 皆月ひかる (A)", () => {
-    expect(cupConverter.JPtoUS('A', 83, 55, 85)).toBe('33AA-22-33');
-    expect(cupConverterMin.JPtoUS('A', 83, 55, 85)).toBe('33AA-22-33');
+    expect(cupConverter.JPtoUS('A', 83, 55, 85)).toBe('36AA-22-33');
+    expect(cupConverterMin.JPtoUS('A', 83, 55, 85)).toBe('36AA-22-33');
 })
 
 // https://erodougazo.com/actress/av/Himari/
 test("Test against Himari (Q)", () => {
-    expect(cupConverter.JPtoUS('Q', 118, 65, 98)).toBe('46G-26-39');
-    expect(cupConverterMin.JPtoUS('Q', 118, 65, 98)).toBe('46G-26-39');
+    expect(cupConverter.JPtoUS('Q', 118, 65, 98)).toBe('44G-26-39');
+    expect(cupConverterMin.JPtoUS('Q', 118, 65, 98)).toBe('44G-26-39');
 })
